@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef APP_VERSION
 #error APP_VERSION must be set by the build environment
 #endif
-
+#define HW_VERSION_US
 // If app version is not specified we assume we are not being invoked by the build script
 #ifndef HW_VERSION
 #error HW_VERSION, and HW_VERSION_countryname must be set by the build environment
@@ -118,10 +118,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // NRF52 boards will define this in variant.h
 #ifndef RF95_SCK
-#define RF95_SCK 5
-#define RF95_MISO 19
-#define RF95_MOSI 27
-#define RF95_NSS 18
+#define RF95_SCK 4
+#define RF95_MISO 2
+#define RF95_MOSI 3
+#define RF95_NSS 5
 #endif
 
 #endif
@@ -161,6 +161,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GPS_BAUDRATE 9600
 
+
+
+
+
+
 #if defined(TBEAM_V10)
 // This string must exactly match the case used in release file names or the android updater won't work
 #define HW_VENDOR "tbeam"
@@ -182,19 +187,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SX1262
 
 #define LORA_DIO0 26 // a No connect on the SX1262 module
-#define LORA_RESET 23
-#define LORA_DIO1 33 // SX1262 IRQ
-#define LORA_DIO2 32 // SX1262 BUSY
-#define LORA_DIO3    // Not connected on PCB, but internally on the TTGO SX1262, if DIO3 is high the TXCO is enabled
+#define LORA_RESET 4
+#define LORA_DIO1 15 // SX1262 IRQ
+#define LORA_DIO2 16 // SX1262 BUSY
+//#define LORA_DIO3    // Not connected on PCB, but internally on the TTGO SX1262, if DIO3 is high the TXCO is enabled
+
+
 
 #ifdef USE_SX1262
 #define SX1262_CS RF95_NSS // FIXME - we really should define LORA_CS instead
 #define SX1262_DIO1 LORA_DIO1
 #define SX1262_BUSY LORA_DIO2
 #define SX1262_RESET LORA_RESET
-#define SX1262_E22 // Not really an E22 but TTGO seems to be trying to clone that
-// Internally the TTGO module hooks the SX1262-DIO2 in to control the TX/RX switch (which is the default for the sx1262interface
-// code)
+
 #endif
 
 // Leave undefined to disable our PMU IRQ handler.  DO NOT ENABLE THIS because the pmuirq can cause sperious interrupts
@@ -255,6 +260,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #define LORA_DIO1 35 // Not really used
 #define LORA_DIO2 34 // Not really used
+
+
+#elif defined(FASA_V1)
+#define HW_VENDOR "fasa1"
+
+#define I2C_SDA 21
+#define I2C_SCL 22
+#undef GPS_RX_PIN
+#undef GPS_TX_PIN
+#define GPS_TX_PIN -1
+#define GPS_RX_PIN -1
+
 
 #elif defined(TLORA_V1)
 // This string must exactly match the case used in release file names or the android updater won't work
