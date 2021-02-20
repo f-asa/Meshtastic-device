@@ -118,9 +118,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // NRF52 boards will define this in variant.h
 #ifndef RF95_SCK
-#define RF95_SCK 4
-#define RF95_MISO 2
-#define RF95_MOSI 3
+#define RF95_SCK 18
+#define RF95_MISO 23
+#define RF95_MOSI 19
 #define RF95_NSS 5
 #endif
 
@@ -175,21 +175,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C_SDA 21
 #define I2C_SCL 22
 
-#define BUTTON_PIN 38     // The middle button GPIO on the T-Beam
-#define BUTTON_PIN_ALT 13 // Alternate GPIO for an external button if needed
+#define BUTTON_PIN -1
+#define BUTTON_PIN_ALT -1
 
-#define LED_INVERTED 1
-#define LED_PIN 4 // Newer tbeams (1.1) have an extra led on GPIO4
+#define LED_INVERTED -1
+#define LED_PIN -1 
 
 // TTGO uses a common pinout for their SX1262 vs RF95 modules - both can be enabled and we will probe at runtime for RF95 and if
 // not found then probe for SX1262
 #define USE_RF95
 #define USE_SX1262
 
-#define LORA_DIO0 26 // a No connect on the SX1262 module
+#define LORA_DIO0 -1
 #define LORA_RESET 4
 #define LORA_DIO1 15 // SX1262 IRQ
-#define LORA_DIO2 16 // SX1262 BUSY
+#define LORA_DIO2 2 // SX1262 BUSY
 //#define LORA_DIO3    // Not connected on PCB, but internally on the TTGO SX1262, if DIO3 is high the TXCO is enabled
 
 
